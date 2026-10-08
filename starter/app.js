@@ -17,7 +17,7 @@ function start() {
   zasilanie = false;
   koniec = false;
   wygrana = false;
-  console.log("UCIECZKA Z SERWEROWNI. Zasilanie awaryjne wystarczy na 10 tur.");
+  console.log("UCIECZKA Z PSYCHIATRYKA. Zasilanie awaryjne wystarczy na 10 tur.");
   pomoc();
   rozejrzyj();
 }
@@ -38,11 +38,11 @@ function zakonczTure() {
 function nazwaPokoju(numer) {
   switch (numer) {
     case 1:
-      return "Recepcja";
+      return "Twoja sypialnia";
     case 2:
       return "Magazyn";
     case 3:
-      return "Serwerownia";
+      return "Elektrownia";
     case 4:
       return "Wyjscie";
     default:
