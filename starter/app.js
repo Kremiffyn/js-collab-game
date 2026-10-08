@@ -35,34 +35,104 @@ function zakonczTure() {
 
 // SEKCJA A — INFORMACJE I MAPA
 function nazwaPokoju(numer) {
-  // TODO A1: switch; zwroc nazwe pokoju jako tekst.
-  return "Nazwa do uzupelnienia";
+  switch (numer) {
+    case 1:
+      return "Recepcja";
+    case 2:
+      return "Magazyn";
+    case 3:
+      return "Serwerownia";
+    case 4:
+      return "Wyjscie";
+    default:
+      return "Nieznane pomieszczenie";
+  }
 }
 function pomoc() {
   console.log('Dostepne: start(), pomoc(), status(), mapa(), rozejrzyj(), idz("prawo"), akcja("karta")');
+  console.log('idz("prawo") - zwiększa pokój o 1');
+  console.log('idz("lewo") - zmniejsza pokój o 1 ');
+  console.log('akcja("karta") - obsługuje "karta", "bezpiecznik", "napraw", "wyjdz" ');
+  console.log('Każdy udany ruch i wykonana akcja kosztują dokładnie 1 energię.');
+  console.log('Oglądanie mapy, opisów, pomocy i stanu jest bezpłatne.');
+  console.log('Literówka, ruch w ścianę, ponowne zabranie przedmiotu i akcja bez spełnionych warunków są bezpłatne.');
+  console.log('Bezpiecznik znika z kieszeni po naprawie. Nie odradza się w magazynie.');
+  console.log('Przy energii 0 przegrywamy, chyba że właśnie skutecznie otworzyliśmy wyjście. Wygrana ostatnim ruchem jest dozwolona.');
+  console.log('Po końcu gry można oglądać informacje, ale ruch i akcje są zablokowane. start() zaczyna od nowa.');
   // TODO A5: dopisz pozostale kierunki i akcje oraz zasade kosztu.
 }
+
 function status() {
-  // TODO A3: wypisz pokoj, energie, przedmioty, zasilanie i stan gry.
-  console.log("Status do uzupelnienia");
+  console.log("Pokoj: " + (pokoj));
+  console.log("Energia: " + (energia));
+  console.log("Bezpiecznik: " + (bezpiecznik ? "tak" : "nie"));
+  console.log("Zasilanie: " + (zasilanie ? "tak" : "nie"));
+  console.log("Stan gry: ");
+  console.log("Wygrana: " + (wygrana ? "tak" : "nie"));
+  console.log("Koniec: " + (koniec ? "tak" : "nie"));
+  console.log("Karta: " + (karta ? "tak" : "nie"));
 }
 function mapa() {
-  // TODO A2: petla for od 1 do 4; nazwa i znacznik aktualnego pokoju.
-  console.log("Mapa do uzupelnienia");
+  for (let numer = 1; numer <= 4; numer = numer + 1) {
+    let text = (numer==pokoj) ? nazwaPokoju(numer) + '<-- jestes tutaj' : nazwaPokoju(numer) ;
+    console.log(text);
+  }
 }
 function rozejrzyj() {
   // TODO A4: switch(pokoj); opis zgodny ze stanem przedmiotow.
-  console.log("Opis pokoju do uzupelnienia");
+  
+  switch(pokoj){
+    case 1:
+      if(!karta) console.log("Na biurku leży karta");
+      break;
+    case 2:
+      if(!bezpiecznik && !zasilanie) console.log("Bezpiecznik leży na półce")
+      break;
+    case 3:
+      console.log("Zasilanie: " + (zasilanie ? "tak" : "nie"));
+      break;
+    case 4:
+      console.log("Tu można otworzyć drzwi, gdy mamy kartę i działa zasilanie");
+      
+      break;
+  }
+    
 }
 
-// SEKCJA B — RUCH
-function idz(kierunek) {
-  // TODO B1: zablokuj ruch po koncu gry.
-  // TODO B2: switch kierunku; oblicz kandydat na nowy pokoj.
-  // TODO B3: odrzuc pokoj poza 1..4 i nieznany kierunek bez kosztu.
-  // TODO B4: zapisz poprawny pokoj, rozejrzyj(), zakonczTure().
-  console.log("Ruch do uzupelnienia");
-}
+// // SEKCJA B — RUCH
+// function idz(kierunek) {
+//   if(koniec){
+//     console.log("Koniec gry, muchacho.");
+//     return;
+//   }
+
+//   let nastepnyPokoj = pokoj;
+
+//   switch (kierunek){
+//     case "prawo":
+//       nastepnyPokoj++;
+//       break;
+//     case "lewo":
+//       nastepnyPokoj--;
+//       break;
+//     default:
+//       console.log("Mano, takiego kierunku za chiny nie istnieje");
+//       return;
+//   }
+    
+    
+//     if(nastepnyPokoj<1||nastepnyPokoj>4){
+//       console.log("Winszuję. Wbiłeś się w ścianę.");
+//       return;
+//     }
+//     pokoj=nastepnyPokoj;
+//     rozejrzyj();
+//     zakonczTure();
+//   // TODO B1: zablokuj ruch po koncu gry.
+//   // TODO B2: switch kierunku; oblicz kandydat na nowy pokoj.
+//   // TODO B3: odrzuc pokoj poza 1..4 i nieznany kierunek bez kosztu.
+//   // TODO B4: zapisz poprawny pokoj, rozejrzyj(), zakonczTure().
+// }
 
 // SEKCJA C — PRZEDMIOTY I WYGRANA
 function akcja(co) {
