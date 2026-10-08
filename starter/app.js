@@ -24,7 +24,8 @@ function start() {
 
 function zakonczTure() {
   energia = energia - 1;
-  console.log("Pozostala energia: " + energia);
+  console.log("Pozostala energia: ");
+  pasekEnergii();
   if (wygrana) {
     console.log("WYGRANA! Drzwi otwarte. Mozesz wrocic do domu.");
   } else if (energia === 0) {
@@ -48,6 +49,18 @@ function nazwaPokoju(numer) {
       return "Nieznane pomieszczenie";
   }
 }
+function pasekEnergii() {
+  let bateria="[";
+  for(let i=0;i<energia;i++){
+    bateria+="#";
+  }
+  for(let i=energia;i<10;i++){
+    bateria+=".";
+  }
+  bateria+="]";
+  console.log(bateria);
+}
+
 function pomoc() {
   console.log('Dostepne: start(), pomoc(), status(), mapa(), rozejrzyj(), idz("prawo"), akcja("karta")');
   console.log('idz("prawo") - zwiększa pokój o 1');
@@ -63,7 +76,7 @@ function pomoc() {
 
 function status() {
   console.log("Pokoj: " + (pokoj));
-  console.log("Energia: " + (energia));
+  pasekEnergii()
   console.log("Bezpiecznik: " + (bezpiecznik ? "tak" : "nie"));
   console.log("Zasilanie: " + (zasilanie ? "tak" : "nie"));
   console.log("Stan gry: ");
@@ -82,9 +95,11 @@ function rozejrzyj() {
   switch(pokoj){
     case 1:
       if(!karta) console.log("Na biurku leży karta");
+      else console.log("Nic ciekawego. Rusz się dalej =)");
       break;
     case 2:
-      if(!bezpiecznik && !zasilanie) console.log("Bezpiecznik leży na półce")
+      if(!bezpiecznik && !zasilanie) console.log("Bezpiecznik leży na półce");
+      else console.log("Nic ciekawego. Rusz się dalej =)");
       break;
     case 3:
       console.log("Zasilanie: " + (zasilanie ? "tak" : "nie"));
@@ -203,7 +218,7 @@ function akcja(co) {
          return;
    }
 
-zakonczTure();
+  zakonczTure();
   // TODO C2: przed zmiana sprawdz pokoj i wymagany stan.
 
   // TODO C3: przy odrzuceniu return; przy sukcesie break.
