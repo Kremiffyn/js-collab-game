@@ -59,7 +59,6 @@ function pomoc() {
   console.log('Bezpiecznik znika z kieszeni po naprawie. Nie odradza się w magazynie.');
   console.log('Przy energii 0 przegrywamy, chyba że właśnie skutecznie otworzyliśmy wyjście. Wygrana ostatnim ruchem jest dozwolona.');
   console.log('Po końcu gry można oglądać informacje, ale ruch i akcje są zablokowane. start() zaczyna od nowa.');
-  // TODO A5: dopisz pozostale kierunki i akcje oraz zasade kosztu.
 }
 
 function status() {
@@ -79,7 +78,6 @@ function mapa() {
   }
 }
 function rozejrzyj() {
-  // TODO A4: switch(pokoj); opis zgodny ze stanem przedmiotow.
   
   switch(pokoj){
     case 1:
@@ -99,40 +97,36 @@ function rozejrzyj() {
     
 }
 
-// // SEKCJA B — RUCH
-// function idz(kierunek) {
-//   if(koniec){
-//     console.log("Koniec gry, muchacho.");
-//     return;
-//   }
+// SEKCJA B — RUCH
+function idz(kierunek) {
+  if(koniec){
+    console.log("Koniec gry, muchacho.");
+    return;
+  }
 
-//   let nastepnyPokoj = pokoj;
+  let nastepnyPokoj = pokoj;
 
-//   switch (kierunek){
-//     case "prawo":
-//       nastepnyPokoj++;
-//       break;
-//     case "lewo":
-//       nastepnyPokoj--;
-//       break;
-//     default:
-//       console.log("Mano, takiego kierunku za chiny nie istnieje");
-//       return;
-//   }
+  switch (kierunek){
+    case "prawo":
+      nastepnyPokoj++;
+      break;
+    case "lewo":
+      nastepnyPokoj--;
+      break;
+    default:
+      console.log("Mano, takiego kierunku za chiny nie istnieje");
+      return;
+  }
     
     
-//     if(nastepnyPokoj<1||nastepnyPokoj>4){
-//       console.log("Winszuję. Wbiłeś się w ścianę.");
-//       return;
-//     }
-//     pokoj=nastepnyPokoj;
-//     rozejrzyj();
-//     zakonczTure();
-//   // TODO B1: zablokuj ruch po koncu gry.
-//   // TODO B2: switch kierunku; oblicz kandydat na nowy pokoj.
-//   // TODO B3: odrzuc pokoj poza 1..4 i nieznany kierunek bez kosztu.
-//   // TODO B4: zapisz poprawny pokoj, rozejrzyj(), zakonczTure().
-// }
+    if(nastepnyPokoj<1||nastepnyPokoj>4){
+      console.log("Winszuję. Wbiłeś się w ścianę.");
+      return;
+    }
+    pokoj=nastepnyPokoj;
+    rozejrzyj();
+    zakonczTure();
+}
 
 // SEKCJA C — PRZEDMIOTY I WYGRANA
 function akcja(co) {
